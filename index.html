@@ -9,7 +9,8 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+<audio id="sound-success" src="https://notificationsounds.com/storage/sounds/file-sounds-1165-pristine.mp3" preload="auto"></audio>
+<audio id="sound-error" src="https://notificationsounds.com/storage/sounds/file-sounds-1143-eventually.mp3" preload="auto"></audio>
   <div class="sidebar">
     <h2>👨‍🎓 Mahasiswa</h2>
     <button onclick="showSection('profil')" class="active">📄 Profil</button>
@@ -43,11 +44,6 @@
   <h2>📚 Riwayat Joki Tugas</h2>
   <input type="text" placeholder="🔍 Cari tugas..." class="info-box" oninput="filterRiwayat()" id="searchRiwayat">
   <div class="info-box" id="tabelRiwayat">Memuat data...</div>
-</div>
-
-<div id="status" class="section">
-  <h2>📡 Status Pesanan Real-Time</h2>
-  <div class="info-box" id="statusRealtimeBox">⏳ Memuat status terbaru...</div>
 </div>
 
     <!-- PESANAN -->
