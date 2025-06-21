@@ -89,6 +89,43 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("harga").value = harga ? `Rp ${harga.toLocaleString("id-ID")}` : '';
   }
 
+function getRiwayat() {
+  const npm = localStorage.getItem("npm");
+  fetch(`https://script.google.com/macros/s/PASTE_ID_SCRIPT/exec?action=getRiwayat&npm=${npm}`)
+    .then(res => res.json())
+    .then(data => {
+      let html = `
+        <table>
+          <tr>
+            <th>No</th>
+            <th>Jenis</th>
+            <th>Judul</th>
+            <th>Deadline</th>
+            <th>Status</th>
+          </tr>
+      `;
+      data.forEach((item, index) => {
+        const statusClass = item.status.toLowerCase().replace(/\s/g, '-');
+        html += `
+          <tr>
+            <td>${index + 1}</td>
+            <td>${item.jenis}</td>
+            <td>${item.judul}</td>
+            <td>${item.deadline}</td>
+            <td><span class="status ${statusClass}">${item.status}</span></td>
+          </tr>
+        `;
+      });
+      html += "</table>";
+      document.getElementById("tabelRiwayat").innerHTML = html;
+    })
+    .catch(err => {
+      document.getElementById("tabelRiwayat").innerHTML = "❌ Gagal memuat data riwayat.";
+      console.error(err);
+    });
+}
+
+
   async function kirimTelegramDenganGambar(data, file) {
     const TELEGRAM_BOT_TOKEN = "7686312873:AAFgoSgH-5A8RyB8tJRzjevPlXI0iQMi8uI";
     const GROUP_CHAT_ID = "-1002853719892"; // Supergroup
