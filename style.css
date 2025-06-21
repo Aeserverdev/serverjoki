@@ -310,5 +310,32 @@
         padding: 1rem;
       }
 
-      
+          .status {
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-weight: bold;
+  display: inline-block;
+  text-transform: capitalize;
+}
+.status.diproses {
+  background-color: orange;
+  color: white;
+}
+.status.dalam-pengerjaan {
+  background-color: dodgerblue;
+  color: white;
+}
+.status.selesai {
+  background-color: green;
+  color: white;
+}
+.status.revisi {
+  background-color: crimson;
+  color: white;
+}
+.status.dibatalkan {
+  background-color: gray;
+  color: white;
+}
+
     }
