@@ -2,13 +2,14 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <title>Dashboard Mahasiswa</title>
+  <title>Dashboard Mahasiswa - Joki Tugas</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
   <div class="sidebar">
     <h2>👨‍🎓 Mahasiswa</h2>
     <button onclick="showSection('profil')" class="active">📄 Profil</button>
@@ -18,38 +19,14 @@
     <button onclick="showSection('pengaturan')">⚙️ Pengaturan</button>
     <button onclick="logout()">🚪 Logout</button>
   </div>
+
   <div class="content">
-  	<div id="pengaturan" class="section">
-  <h2>⚙️ Pengaturan</h2>
-
-  <!-- Edit Profil -->
-  <div class="info-box">
-    <label>✏️ Edit Nama</label>
-    <input type="text" id="pengaturanNama" placeholder="Masukkan nama baru">
-    <button class="btn" onclick="simpanEditNama()">💾 Simpan Nama</button>
-  </div>
-
-  <!-- Ganti Password -->
-  <div class="info-box">
-    <label>🔐 Ganti Password</label>
-    <input type="password" id="passLama" placeholder="Password Lama">
-    <input type="password" id="passBaru" placeholder="Password Baru">
-    <button class="btn" onclick="gantiPassword()">🔁 Update Password</button>
-  </div>
-
-  <!-- Bahasa -->
-  <div class="info-box">
-    <label>🌐 Bahasa</label>
-    <select id="pilihBahasa" onchange="ubahBahasa()">
-      <option value="id">🇮🇩 Indonesia</option>
-      <option value="en">🇬🇧 English</option>
-    </select>
-  </div>
-</div>
     <div class="topbar">
-      <h1>Dashboard</h1>
+      <h1>Dashboard Mahasiswa</h1>
       <div class="toggle-dark" onclick="toggleTheme()">🌙 Mode</div>
     </div>
+
+    <!-- PROFIL -->
     <div id="profil" class="section active">
       <div class="card-profile">
         <img src="https://ui-avatars.com/api/?name=Mahasiswa" alt="Foto Mahasiswa">
@@ -60,12 +37,14 @@
       </div>
     </div>
 
+    <!-- RIWAYAT -->
     <div id="riwayat" class="section">
       <h2>📚 Riwayat Joki Tugas</h2>
       <input type="text" placeholder="🔍 Cari tugas..." class="info-box" oninput="filterRiwayat()" id="searchRiwayat">
       <div class="info-box" id="tabelRiwayat">Memuat data...</div>
     </div>
 
+    <!-- PESANAN -->
     <div id="pesanan" class="section">
       <h2>📝 Tambah Pesanan</h2>
       <form id="formPesanan">
@@ -90,72 +69,100 @@
             <option value="RENALDI">RENALDI</option>
             <option value="ABDUL HAKIM">ABDUL HAKIM</option>
             <option value="AIDIL ANWAR">AIDIL ANWAR</option>
+          </select>
+        </div>
+
+        <div class="info-box">
+          <label>Metode Pembayaran</label>
+          <input id="metode" readonly>
+        </div>
+
+        <div class="info-box" id="infoDana" style="display:none;">
+          <strong>Nomor Dana:</strong> <span id="nomorDana"></span>
+        </div>
+
+        <div class="info-box">
+          <label>Judul Tugas</label>
+          <input type="text" id="judul" placeholder="Contoh: Sistem Informasi Akademik" required>
+        </div>
+
+        <div class="info-box">
+          <label>Deskripsi Tugas</label>
+          <textarea id="deskripsi" placeholder="Jelaskan detail tugas Anda..." required></textarea>
+        </div>
+
+        <div class="info-box">
+          <label>Nama Lengkap Dosen</label>
+          <input type="text" id="dosen" placeholder="Contoh: Dr. Bambang S.Kom., M.T." required>
+        </div>
+
+        <div class="info-box">
+          <label>Fakultas</label>
+          <input type="text" id="fakultas" placeholder="Contoh: Fakultas Ilmu Komputer" required>
+        </div>
+
+        <div class="info-box">
+          <label>Mata Kuliah</label>
+          <input type="text" id="matkul" placeholder="Contoh: Pemrograman Web" required>
+        </div>
+
+        <div class="info-box">
+          <label>Deadline (minimal +1 hari dari hari ini)</label>
+          <input type="date" id="deadline" required>
+        </div>
+
+        <div class="info-box">
+          <label>Harga</label>
+          <input id="harga" readonly>
+        </div>
+
+        <div class="info-box">
+          <label>Upload Bukti Pembayaran (gambar)</label>
+          <input type="file" id="bukti" accept="image/*" required>
+        </div>
+
+        <div class="info-box">
+          <button type="submit" class="btn">🚀 Kirim Pesanan</button>
+        </div>
+      </form>
+
+      <div class="info-box" id="statusPesanan" style="display:none"></div>
+    </div>
+
+    <!-- PEMBAYARAN -->
+    <div id="pembayaran" class="section">
+      <h2>💳 Riwayat Pembayaran</h2>
+      <input type="text" placeholder="🔍 Cari pembayaran..." class="info-box" oninput="filterPembayaran()" id="searchPembayaran">
+      <div class="info-box" id="tabelPembayaran">Memuat data...</div>
+    </div>
+
+    <!-- PENGATURAN -->
+    <div id="pengaturan" class="section">
+      <h2>⚙️ Pengaturan</h2>
+
+      <div class="info-box">
+        <label>✏️ Edit Nama</label>
+        <input type="text" id="pengaturanNama" placeholder="Masukkan nama baru">
+        <button class="btn" onclick="simpanEditNama()">💾 Simpan Nama</button>
+      </div>
+
+      <div class="info-box">
+        <label>🔐 Ganti Password</label>
+        <input type="password" id="passLama" placeholder="Password Lama">
+        <input type="password" id="passBaru" placeholder="Password Baru">
+        <button class="btn" onclick="gantiPassword()">🔁 Update Password</button>
+      </div>
+
+      <div class="info-box">
+        <label>🌐 Bahasa</label>
+        <select id="pilihBahasa" onchange="ubahBahasa()">
+          <option value="id">🇮🇩 Indonesia</option>
+          <option value="en">🇬🇧 English</option>
         </select>
       </div>
-
-      <div class="info-box">
-        <label>Metode Pembayaran</label>
-        <input id="metode" readonly>
-      </div>
-
-      <div class="info-box" id="infoDana" style="display:none;">
-        <strong>Nomor Dana:</strong> <span id="nomorDana"></span>
-      </div>
-
-      <div class="info-box">
-  <label>Judul</label>
-  <input type="text" id="judul" placeholder="Contoh: Sistem Informasi Akademik" required>
-</div>
-
-<div class="info-box">
-  <label>Deskripsi</label>
-  <textarea id="deskripsi" placeholder="Penjelasan tentang tugas yang akan dibuat" required></textarea>
-</div>
-
-<div class="info-box">
-  <label>Nama Lengkap Dosen</label>
-  <input type="text" id="dosen" placeholder="Contoh: Dr. Bambang S.Kom., M.T." required>
-</div>
-
-<div class="info-box">
-  <label>Fakultas</label>
-  <input type="text" id="fakultas" placeholder="Contoh: Fakultas Ilmu Komputer" required>
-</div>
-
-<div class="info-box">
-  <label>Mata Kuliah</label>
-  <input type="text" id="matkul" placeholder="Contoh: Pemrograman Web" required>
-</div>
-
-      <div class="info-box">
-        <label>Deadline wajib lewat dari 1 Hari</label>
-        <input type="date" id="deadline" required>
-      </div>
-
-      <div class="info-box">
-        <label>Harga</label>
-        <input id="harga" readonly>
-      </div>
-
-      <div class="info-box">
-        <label>Upload Bukti Pembayaran (gambar)</label>
-        <input type="file" id="bukti" accept="image/*" required>
-      </div>
-
-      <div class="info-box">
-        <button type="submit" class="btn">🚀 Kirim Pesanan</button>
-      </div>
-    </form>
-
-    <div class="info-box" id="statusPesanan" style="display:none"></div>
+    </div>
   </div>
 
-  <div id="pembayaran" class="section">
-    <h2>💳 Riwayat Pembayaran</h2>
-    <input type="text" placeholder="🔍 Cari pembayaran..." class="info-box" oninput="filterPembayaran()" id="searchPembayaran">
-    <div class="info-box" id="tabelPembayaran">Memuat data...</div>
-  </div>
-</div>
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
