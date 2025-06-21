@@ -1,3 +1,4 @@
+
 function simpanEditNama() {
   const namaBaru = document.getElementById("pengaturanNama").value.trim();
   if (!namaBaru) return showNotif("error", "Nama kosong", "Silakan masukkan nama baru.");
@@ -319,4 +320,11 @@ function filterPembayaran() {
       danaBox.style.display = "none";
       document.getElementById("nomorDana").textContent = "";
     }
+
+    setInterval(() => {
+  const aktif = document.querySelector(".section.active")?.id;
+  if (aktif === "riwayat") loadRiwayat();
+  if (aktif === "pembayaran") loadPembayaran();
+}, 10000); // refresh tiap 10 detik
+
   });
