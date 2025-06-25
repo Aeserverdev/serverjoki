@@ -138,7 +138,7 @@
     const user = JSON.parse(localStorage.getItem("user"));
     if (!user) {
       alert("Silakan login terlebih dahulu.");
-      window.location.href = "123.html";
+      window.location.href = "log.html";
     } else {
       document.getElementById("userNama").innerText = user.nama || "-";
       document.getElementById("userID").innerText = user.npm || "-";
@@ -148,7 +148,7 @@
 
     function logout() {
       localStorage.removeItem("user");
-      window.location.href = "123.html";
+      window.location.href = "log.html";
     }
   </script>
 
